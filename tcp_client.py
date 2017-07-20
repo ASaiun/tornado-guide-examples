@@ -12,7 +12,7 @@ def Trans():
     stream = yield TCPClient().connect( 'localhost', 8760 )
     try:
         for msg in ( 'zzxxc', 'abcde', 'i feel lucky', 'over' ):
-            yield stream.write( msg )
+            yield stream.write(bytes(msg.encode("utf-8")))
             back = yield stream.read_bytes( 20, partial = True )
             print back
     except iostream.StreamClosedError:
